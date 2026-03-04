@@ -4,7 +4,7 @@ generate_symbol_notebooks.py
 Generate one executed Jupyter notebook per symbol using papermill.
 
 Each output notebook is saved to:
-    notebooks/it/<SYMBOL>/analysis.ipynb
+    notebooks/it/<SYMBOL>.ipynb
 
 Usage:
     python generate_symbol_notebooks.py                  # all symbols
@@ -45,9 +45,9 @@ def _load_symbols(path: Path) -> list[str]:
 
 def _output_path(symbol: str) -> Path:
     """Return the output notebook path for a given symbol."""
-    # Replace dots with underscores to avoid filesystem edge-cases (e.g. ENI.MI → ENI_MI)
+    # Replace dots with underscores to avoid filesystem edge-cases (e.g. ENI.MI → ENI_MI.ipynb)
     safe_name = symbol.replace(".", "_")
-    return OUTPUT_DIR / safe_name / "analysis.ipynb"
+    return OUTPUT_DIR / f"{safe_name}.ipynb"
 
 
 def _generate(symbol: str, dry_run: bool) -> bool:
@@ -66,7 +66,7 @@ def _generate(symbol: str, dry_run: bool) -> bool:
         )
         sys.exit(1)
 
-    out_path.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     logger.info("Generating notebook for %s → %s", symbol, out_path)
     try:
