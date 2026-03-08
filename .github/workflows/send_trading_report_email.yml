@@ -1,0 +1,98 @@
+name: Send Trading Report Email
+
+on:
+  # Fires automatically once the analysis + report workflow completes.
+  # This guarantees trading_report.txt is already committed to git before we read it.
+  workflow_run:
+    workflows: ["Analyze Stocks and Generate Report"]
+    types: [completed]
+  # Manual trigger — useful for testing the email without waiting for the
+  # full pipeline to run (sends whatever trading_report.txt is in the repo).
+  workflow_dispatch:
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+    # Guard: skip when triggered by a failed analysis run.
+    # On manual dispatch there is no workflow_run context, so always proceed.
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        # The default checkout fetches HEAD of the default branch, which already
+        # contains the trading_report.txt committed by analyze_and_report.yml.
+
+      - name: Read report content and extract date
+        id: report
+        run: |
+          REPORT_FILE="data/results/it/trading_report.txt"
+
+          if [ ! -f "$REPORT_FILE" ]; then
+            echo "ERROR: $REPORT_FILE not found — analysis may not have run yet." >&2
+            exit 1
+          fi
+
+          # Extract the report date from the first line that contains a date pattern
+          # (e.g. "ACTIONABLE TRADES: 2026-03-06 to 2026-03-06 (Last 4 Days)")
+          REPORT_DATE=$(grep -oP '\d{4}-\d{2}-\d{2}' "$REPORT_FILE" | tail -1)
+          if [ -z "$REPORT_DATE" ]; then
+            REPORT_DATE=$(date +%Y-%m-%d)
+          fi
+
+          echo "date=$REPORT_DATE" >> "$GITHUB_OUTPUT"
+
+          # Multiline-safe export (GitHub-recommended heredoc pattern).
+          # This avoids shell injection and correctly handles special characters.
+          {
+            echo "content<<REPORT_EOF"
+            cat "$REPORT_FILE"
+            echo "REPORT_EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Send trading report email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          # Use SSL (port 465) for a direct encrypted connection.
+          # Alternative: port 587 with secure: false and STARTTLS.
+          secure: true
+          username: ${{ secrets.GMAIL_USERNAME }}
+          password: ${{ secrets.GMAIL_APP_PASSWORD }}
+          subject: "Trading Report — ${{ steps.report.outputs.date }}"
+          to: ${{ secrets.GMAIL_RECIPIENT }}
+          from: "myfinance2 <${{ secrets.GMAIL_USERNAME }}>"
+          # Plain-text body — fallback for email clients that don't render HTML.
+          body: ${{ steps.report.outputs.content }}
+          # HTML body — wraps the report in a <pre> block so the monospace
+          # tabular layout renders correctly in modern email clients.
+          html_body: |
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+              <meta charset="UTF-8">
+            </head>
+            <body style="background:#f5f5f5;padding:24px;font-family:sans-serif;">
+              <div style="max-width:700px;margin:0 auto;background:#fff;border-radius:8px;
+                          box-shadow:0 1px 4px rgba(0,0,0,.1);overflow:hidden;">
+                <div style="background:#1a1d27;padding:16px 24px;">
+                  <h2 style="margin:0;color:#5b8dee;font-size:16px;letter-spacing:.05em;">
+                    myfinance2 &mdash; Borsa Italiana
+                  </h2>
+                  <p style="margin:4px 0 0;color:#7a82a8;font-size:13px;">
+                    Daily Trading Report &mdash; ${{ steps.report.outputs.date }}
+                  </p>
+                </div>
+                <div style="padding:24px;">
+                  <pre style="font-family:'Cascadia Code','Fira Code',Consolas,monospace;
+                               font-size:12.5px;line-height:1.6;background:#0f1117;
+                               color:#d4d8f0;padding:20px;border-radius:6px;
+                               overflow-x:auto;white-space:pre;">${{ steps.report.outputs.content }}</pre>
+                </div>
+                <div style="padding:12px 24px;background:#f0f0f0;font-size:11px;color:#999;">
+                  Sent automatically by GitHub Actions after Borsa Italiana market close.
+                </div>
+              </div>
+            </body>
+            </html>
