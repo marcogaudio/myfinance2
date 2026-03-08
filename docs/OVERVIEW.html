@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>myfinance2 — Repository Overview</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e3250;
+      --accent: #5b8dee;
+      --accent2: #7c5cbf;
+      --green: #4caf82;
+      --red: #e05c6e;
+      --yellow: #e0b84a;
+      --text: #d4d8f0;
+      --text-muted: #7a82a8;
+      --code-bg: #141720;
+      --nav-width: 260px;
+      --font-mono: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+      --font-sans: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.7;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      width: var(--nav-width);
+      min-width: var(--nav-width);
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 28px 0 40px;
+      flex-shrink: 0;
+    }
+
+    nav .nav-logo {
+      padding: 0 20px 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    nav .nav-logo .title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    nav .nav-logo .subtitle {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    nav a {
+      display: block;
+      padding: 6px 20px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      border-left: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+
+    nav a:hover {
+      color: var(--text);
+      background: var(--surface2);
+      border-left-color: var(--accent);
+    }
+
+    nav .nav-section {
+      padding: 14px 20px 4px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      max-width: 900px;
+      padding: 48px 52px 80px;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .hero-sub {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 52px 0 16px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 28px 0 10px;
+    }
+
+    h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin: 20px 0 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    p { margin-bottom: 12px; }
+
+    /* ── TABLES ── */
+    .table-wrap { overflow-x: auto; margin: 16px 0; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    thead tr { background: var(--surface2); }
+
+    th {
+      text-align: left;
+      padding: 9px 14px;
+      color: var(--accent);
+      font-weight: 600;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 8px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+    /* ── CODE ── */
+    code {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      padding: 1px 5px;
+      border-radius: 4px;
+      color: #c9d1f5;
+    }
+
+    pre {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 22px;
+      overflow-x: auto;
+      line-height: 1.6;
+      margin: 14px 0;
+      color: #c9d1f5;
+    }
+
+    pre .c  { color: #4a5280; }  /* comment */
+    pre .k  { color: #b57aed; }  /* keyword */
+    pre .s  { color: #7ec98f; }  /* string */
+    pre .n  { color: #5b8dee; }  /* name/var */
+    pre .o  { color: #e0b84a; }  /* operator */
+    pre .m  { color: #e8a46a; }  /* number */
+
+    /* ── CALLOUTS ── */
+    .callout {
+      border-left: 3px solid var(--accent);
+      background: rgba(91, 141, 238, 0.07);
+      padding: 12px 16px;
+      border-radius: 0 6px 6px 0;
+      margin: 16px 0;
+      font-size: 13.5px;
+    }
+
+    .callout.green  { border-color: var(--green);  background: rgba(76, 175, 130, 0.07); }
+    .callout.yellow { border-color: var(--yellow); background: rgba(224, 184, 74, 0.07); }
+    .callout.red    { border-color: var(--red);    background: rgba(224, 92, 110, 0.07); }
+
+    /* ── BADGES ── */
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      vertical-align: middle;
+    }
+
+    .badge-blue   { background: rgba(91,141,238,0.18); color: var(--accent); }
+    .badge-green  { background: rgba(76,175,130,0.18); color: var(--green); }
+    .badge-purple { background: rgba(124,92,191,0.18); color: #a07de0; }
+
+    /* ── FLOW DIAGRAM ── */
+    .flow { margin: 24px 0; }
+
+    .flow pre {
+      border-color: var(--accent2);
+      background: #11121e;
+    }
+
+    /* ── SIGNAL CARD ── */
+    .signal-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin: 14px 0;
+    }
+
+    .signal-card .signal-name {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .signal-card p { margin-bottom: 6px; font-size: 13.5px; }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 780px) {
+      nav { display: none; }
+      main { padding: 28px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- SIDEBAR NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="title">myfinance2</div>
+    <div class="subtitle">Borsa Italiana Quant Platform</div>
+  </div>
+  <div class="nav-section">Sections</div>
+  <a href="#summary">1. Project Summary</a>
+  <a href="#layout">2. Repository Layout</a>
+  <a href="#pipeline">3. Data Pipeline</a>
+  <a href="#scripts">4. Scripts Reference</a>
+  <a href="#signals">5. Signal Generation</a>
+  <a href="#stoplos">6. Stop-Loss &amp; Risk</a>
+  <a href="#report">7. Report &amp; Dashboard</a>
+  <a href="#cicd">8. CI/CD Workflows</a>
+  <a href="#config">9. Configuration</a>
+  <a href="#deps">10. Dependencies</a>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+
+  <h1>myfinance2</h1>
+  <p class="hero-sub">
+    Quantitative finance platform for automated daily analysis of
+    <strong>Borsa Italiana</strong> (Italian stock market) equities,
+    running end-to-end via GitHub Actions.
+  </p>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <h2 id="summary">1. Project Summary</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Property</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Market</td><td>Borsa Italiana (Milan, <code>.MI</code> tickers)</td></tr>
+        <tr><td>Benchmark</td><td><code>FTSEMIB.MI</code> — FTSE MIB Index</td></tr>
+        <tr><td>Data source</td><td>Yahoo Finance via <code>yfinance</code></td></tr>
+        <tr><td>Data format</td><td>Parquet — long/tidy format</td></tr>
+        <tr><td>Signal types</td><td>Breakout · Turtle Trader · Triple MA Crossover · Floor/Ceiling</td></tr>
+        <tr><td>Automation</td><td>GitHub Actions — Mon–Fri after market close (21:00 UTC)</td></tr>
+        <tr><td>Language</td><td>Python 3.11</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <strong>Core idea:</strong> every day after Borsa Italiana closes, the pipeline
+    automatically downloads new price data, computes trading signals on
+    <em>relative prices</em> (stock vs FTSE MIB), calculates ATR-based stop-losses,
+    and produces an actionable trading dashboard committed back to the repository.
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <h2 id="layout">2. Repository Layout</h2>
+
+  <pre>myfinance2/
+│
+├── analyze_stock.py               <span class="c"># Main analysis entry point</span>
+├── get_daily_ohlc_data.py         <span class="c"># Download today's OHLC bar</span>
+├── get_historical_ohlc_data.py    <span class="c"># Bulk backfill (2016–present)</span>
+├── trading_report.py              <span class="c"># Generate dashboard + text report</span>
+├── generate_symbol_notebooks.py   <span class="c"># Per-symbol Jupyter notebooks</span>
+├── pipeline.py                    <span class="c"># Stateless pipeline stage functions</span>
+├── config.json                    <span class="c"># Central parameter store</span>
+│
+├── algoshort-0.1.1-py3-none-any.whl   <span class="c"># Private package (install manually)</span>
+│
+├── data/
+│   ├── ticker/it/ticker.xlsx          <span class="c"># Input: ticker list</span>
+│   ├── ohlc/
+│   │   ├── today/it/ohlc_data.parquet       <span class="c"># Latest bar (overwritten daily)</span>
+│   │   └── historical/it/ohlc_data.parquet  <span class="c"># Full history (appended daily)</span>
+│   └── results/it/
+│       ├── analysis_results.parquet   <span class="c"># ~500 MB — NOT in git</span>
+│       ├── cumul_snapshot.xlsx        <span class="c"># Terminal cumulative returns</span>
+│       ├── trading_dashboard.xlsx     <span class="c"># Actionable dashboard — in git</span>
+│       └── trading_report.txt         <span class="c"># Text report — in git</span>
+│
+├── notebooks/
+│   ├── symbol_analysis_template.ipynb <span class="c"># Template for per-symbol analysis</span>
+│   └── it/&lt;SYMBOL&gt;.ipynb              <span class="c"># Generated (artifact only)</span>
+│
+└── .github/workflows/
+    ├── download_daily_ohlc.yml        <span class="c"># Workflow 1</span>
+    ├── analyze_and_report.yml         <span class="c"># Workflow 2</span>
+    └── generate_symbol_notebooks.yml  <span class="c"># Workflow 3</span></pre>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <h2 id="pipeline">3. End-to-End Data Pipeline</h2>
+
+  <div class="flow">
+    <pre>┌─────────────────────────────────────────────────────────────────────┐
+│  INPUT                                                              │
+│  data/ticker/it/ticker.xlsx  →  [AVIO.MI, A2A.MI, ...]            │
+└──────────────────────┬──────────────────────────────────────────────┘
+                       │
+                       ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│  STEP 1 — get_daily_ohlc_data.py                                    │
+│  Download today's OHLC bar from Yahoo Finance                       │
+│  → data/ohlc/today/it/ohlc_data.parquet                            │
+└──────────────────────┬──────────────────────────────────────────────┘
+                       │  CI appends row to historical
+                       ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│  STEP 2 — CI inline Python                                          │
+│  Concat today + historical Parquet                                  │
+│  → data/ohlc/historical/it/ohlc_data.parquet  (2016–present)       │
+└──────────────────────┬──────────────────────────────────────────────┘
+                       │
+                       ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│  STEP 3 — analyze_stock.py + pipeline.py          ← config.json    │
+│                                                                     │
+│  For each symbol:                                                   │
+│    1. Normalize vs FTSEMIB.MI  → ropen/rhigh/rlow/rclose           │
+│    2. Generate signals         → rbo_*, rtt_*, rsma_*, rema_*, rrg │
+│    3. Calculate returns        → &lt;signal&gt;_cumul, _chg1D           │
+│    4. Calculate stop-losses    → &lt;signal&gt;_stop_loss               │
+│                                                                     │
+│  → data/results/it/analysis_results.parquet  (~500 MB, artifact)   │
+│  → data/results/it/cumul_snapshot.xlsx                              │
+└──────────────────────┬──────────────────────────────────────────────┘
+                       │
+                       ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│  STEP 4 — trading_report.py                                         │
+│  Per signal × ticker:                                               │
+│    - Detect action: ENTER / EXIT / HOLD / FLIP                      │
+│    - Compute risk_pct = |price − stop_loss| / price                 │
+│                                                                     │
+│  → data/results/it/trading_dashboard.xlsx  (in git)                │
+│  → data/results/it/trading_report.txt      (in git)                │
+└──────────────────────┬──────────────────────────────────────────────┘
+                       │
+                       ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│  STEP 5 — generate_symbol_notebooks.py                              │
+│  Run symbol_analysis_template.ipynb per ticker via papermill        │
+│  → notebooks/it/&lt;SYMBOL&gt;.ipynb  (GitHub Actions artifact)         │
+└─────────────────────────────────────────────────────────────────────┘</pre>
+  </div>
+
+  <h3>Data schema (all Parquet files)</h3>
+  <p>Long/tidy format — one row per <code>(symbol, date)</code>.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Column</th><th>Type</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>symbol</code></td><td>string</td><td>Yahoo Finance ticker, e.g. <code>AVIO.MI</code></td></tr>
+        <tr><td><code>date</code></td><td>datetime</td><td>Bar date</td></tr>
+        <tr><td><code>open</code></td><td>float</td><td>Opening price</td></tr>
+        <tr><td><code>high</code></td><td>float</td><td>Daily high</td></tr>
+        <tr><td><code>low</code></td><td>float</td><td>Daily low</td></tr>
+        <tr><td><code>close</code></td><td>float</td><td>Closing price</td></tr>
+        <tr><td><code>volume</code></td><td>int</td><td>Trading volume</td></tr>
+        <tr><td><code>fx</code></td><td>float</td><td>FX adjustment — always <code>1.0</code> for <code>.MI</code> stocks</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <h2 id="scripts">4. Scripts Reference</h2>
+
+  <h3><code>get_daily_ohlc_data.py</code></h3>
+  <p>Downloads the current day's OHLC bar for all tickers in <code>ticker.xlsx</code>.</p>
+  <ul style="padding-left:20px; margin-bottom:12px; font-size:13.5px;">
+    <li>Uses <code>algoshort.YFinanceDataHandler</code> with chunked multi-threaded downloads (<code>chunk_size=20</code>, <code>threads=True</code>)</li>
+    <li><code>use_cache=False</code> — always fetches fresh data</li>
+    <li>Output: <code>data/ohlc/today/it/ohlc_data.parquet</code></li>
+  </ul>
+
+  <h3><code>get_historical_ohlc_data.py</code></h3>
+  <p>One-time (or periodic reset) bulk download from <code>2016-01-01</code> to present. After first pass, detects symbols with zero rows and retries individually.</p>
+
+  <h3><code>analyze_stock.py</code> + <code>pipeline.py</code></h3>
+  <p>Main analysis pipeline. <code>analyze_stock.py</code> is the entry point; <code>pipeline.py</code> contains all pure transformation functions.</p>
+
+  <pre><span class="c"># Execution order (analyze_stock.py)</span>
+cfg     = load_config(<span class="s">"config.json"</span>)
+ohlc, symbols = load_data(historical_parquet, benchmark)
+dfs     = build_symbol_dfs(ohlc, symbols)
+dfs     = compute_relative_prices(dfs, benchmark_df)   <span class="c"># normalize vs FTSEMIB.MI</span>
+dfs, signals = generate_all_signals(dfs, ...)          <span class="c"># Breakout, Turtle, MA, FC</span>
+dfs     = calculate_returns(dfs, signals)
+dfs     = calculate_stop_losses(dfs, signals, atr_window=<span class="m">14</span>, atr_multiplier=<span class="m">2.0</span>)
+save_results(dfs, output_path)</pre>
+
+  <div class="callout green">
+    <strong>Design principle:</strong> each function in <code>pipeline.py</code> is a stateless
+    <code>DataFrame → DataFrame</code> transformation — independently testable and reorderable.
+    No mutable global state.
+  </div>
+
+  <h3><code>trading_report.py</code></h3>
+  <p>Reads <code>analysis_results.parquet</code> and produces the trading dashboard. Detects signal columns automatically: any column <code>X</code> where <code>X_stop_loss</code> also exists. Outputs two sections:</p>
+  <ol style="padding-left:20px; font-size:13.5px;">
+    <li><strong>Actionable Trades</strong> — Enter/Exit events in the last 4 trading days</li>
+    <li><strong>Latest Status</strong> — per-signal detail for active signals on the latest bar</li>
+  </ol>
+
+  <h3><code>generate_symbol_notebooks.py</code></h3>
+  <p>Generates one Jupyter notebook per symbol using <code>papermill</code>. Template: <code>notebooks/symbol_analysis_template.ipynb</code>. Injects <code>SYMBOL</code> parameter per execution. Graceful failure: errors per symbol are logged and skipped.</p>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <h2 id="signals">5. Signal Generation</h2>
+
+  <h3>5.1 Relative Price Normalization</h3>
+
+  <p>All signals run on <strong>relative prices</strong>, not raw prices. This removes the systematic benchmark component and isolates alpha.</p>
+
+  <pre>bmfx   = benchmark_close / benchmark_close[<span class="m">0</span>]   <span class="c"># rebase to 1.0 at first date</span>
+
+ropen  = open  / bmfx
+rhigh  = high  / bmfx
+rlow   = low   / bmfx
+rclose = close / bmfx</pre>
+
+  <div class="callout">
+    <strong>Example:</strong> if a stock doubled while the benchmark stayed flat, <code>rclose</code> doubles.
+    If both moved identically, <code>rclose</code> stays at 1.0. Signals on relative prices
+    fire only when a stock is outperforming or underperforming the index.
+  </div>
+
+  <h3>5.2 Breakout Signal</h3>
+
+  <div class="signal-card">
+    <div class="signal-name">rbo_150 &nbsp;<span class="badge badge-blue">Breakout</span></div>
+    <p>A new N-bar high on relative prices triggers a long; a new N-bar low triggers a short. Signal persists (forward-filled) until the opposite extreme is breached.</p>
+    <pre>rhi_N = rolling_max(rhigh, N)
+rlo_N = rolling_min(rlow,  N)
+
+<span class="k">if</span>   rhigh == rhi_N  →  signal = <span class="m">+1</span>   <span class="c">(new N-bar high → long)</span>
+<span class="k">elif</span> rlow  == rlo_N  →  signal = <span class="m">-1</span>   <span class="c">(new N-bar low  → short)</span>
+<span class="k">else</span>                →  forward-fill previous signal</pre>
+    <p><strong>Active parameter:</strong> <code>bo_window = 150</code> &nbsp;|&nbsp; <strong>Output:</strong> <code>rhi_150</code>, <code>rlo_150</code>, <code>rbo_150</code></p>
+  </div>
+
+  <h3>5.3 Turtle Trader Signal</h3>
+
+  <div class="signal-card">
+    <div class="signal-name">rtt_5020 &nbsp;<span class="badge badge-purple">Turtle</span></div>
+    <p>Dual-window breakout: the slow window (50) sets the direction; the fast window (20) acts as a trailing stop. When the fast breakout reverses, the position closes even if the slow signal hasn't flipped — limiting drawdown.</p>
+    <pre>slow_regime = breakout(rhigh, rlow, window=<span class="m">50</span>)   <span class="c"># direction</span>
+fast_regime = breakout(rhigh, rlow, window=<span class="m">20</span>)   <span class="c"># trailing stop</span>
+
+rtt_5020:
+  → <span class="m">+1</span> if slow=<span class="m">+1</span> AND fast=<span class="m">+1</span>   <span class="c">(long, trailing stop not hit)</span>
+  → <span class="m">-1</span> if slow=<span class="m">-1</span> AND fast=<span class="m">-1</span>   <span class="c">(short, trailing stop not hit)</span>
+  →  <span class="m">0</span> otherwise                  <span class="c">(closed by trailing stop)</span></pre>
+    <p><strong>Parameters:</strong> <code>fast=20</code>, <code>slow=50</code> &nbsp;|&nbsp; <strong>Outputs:</strong> <code>rbo_20</code>, <code>rbo_50</code>, <code>rtt_5020</code></p>
+  </div>
+
+  <h3>5.4 Triple MA Crossover</h3>
+
+  <div class="signal-card">
+    <div class="signal-name">rsma_50100150 &nbsp;/&nbsp; rema_50100150 &nbsp;<span class="badge badge-green">MA Cross</span></div>
+    <p>Three moving averages (50, 100, 150) must all align for a signal. The final value is the product of two pairwise crossovers — requiring full stack alignment.</p>
+    <pre>sm = sign(MA_50  − MA_100)   <span class="c"># short vs medium: +1 or -1</span>
+ml = sign(MA_100 − MA_150)   <span class="c"># medium vs long:  +1 or -1</span>
+
+final = sm × ml
+  → <span class="m">+1</span>  if sm=<span class="m">+1</span> AND ml=<span class="m">+1</span>  <span class="c">(50 > 100 > 150 — fully bullish)</span>
+  → <span class="m">-1</span>  if sm=<span class="m">-1</span> AND ml=<span class="m">-1</span>  <span class="c">(50 < 100 < 150 — fully bearish)</span>
+  →  <span class="m">0</span>  if mixed             <span class="c">(conflicting crossovers)</span></pre>
+    <p>Run for both <code>sma</code> and <code>ema</code>, producing 6 columns total.</p>
+  </div>
+
+  <h3>5.5 Floor/Ceiling Regime (<code>rrg</code>)</h3>
+  <p>Identifies support/resistance regimes using swing-high/swing-low detection with volatility bands. Computed by <code>algoshort.RegimeFC</code>. Parameters: <code>vlty_n=63</code>, <code>dist_pct=0.05</code>, <code>retrace_pct=0.05</code>, <code>threshold=1.5</code>.</p>
+
+  <h3>5.6 All active signals in the dashboard</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Column</th><th>Type</th><th>Parameters</th></tr></thead>
+      <tbody>
+        <tr><td><code>rbo_150</code></td><td>Breakout</td><td>window=150</td></tr>
+        <tr><td><code>rbo_50</code></td><td>Breakout</td><td>window=50</td></tr>
+        <tr><td><code>rbo_20</code></td><td>Breakout</td><td>window=20 (Turtle fast window)</td></tr>
+        <tr><td><code>rtt_5020</code></td><td>Turtle</td><td>slow=50, fast=20</td></tr>
+        <tr><td><code>rsma_50100</code></td><td>SMA crossover</td><td>50 vs 100 only</td></tr>
+        <tr><td><code>rsma_100150</code></td><td>SMA crossover</td><td>100 vs 150 only</td></tr>
+        <tr><td><code>rsma_50100150</code></td><td>Triple SMA</td><td>all three aligned</td></tr>
+        <tr><td><code>rema_50100</code></td><td>EMA crossover</td><td>50 vs 100 only</td></tr>
+        <tr><td><code>rema_100150</code></td><td>EMA crossover</td><td>100 vs 150 only</td></tr>
+        <tr><td><code>rema_50100150</code></td><td>Triple EMA</td><td>all three aligned</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>5.7 Columns added per signal after full pipeline</h3>
+
+  <pre>&lt;signal&gt;              →  ±1 / 0  (raw signal value)
+&lt;signal&gt;_chg1D        →  daily price change × lagged signal
+&lt;signal&gt;_returns      →  pct_change × lagged signal
+&lt;signal&gt;_log_returns  →  log(1 + pct_change) × lagged signal
+&lt;signal&gt;_cumul        →  exp(cumsum(log_returns)) − 1
+&lt;signal&gt;_stop_loss    →  ATR-based stop-loss level</pre>
+
+  <div class="callout yellow">
+    <strong>Lagged signal (no look-ahead bias):</strong> returns use <code>signal.shift(1)</code> —
+    today's signal is acted on at tomorrow's open, not today's close.
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <h2 id="stoplos">6. Stop-Loss and Risk</h2>
+
+  <h3>ATR Stop-Loss</h3>
+
+  <pre><span class="c"># True Range</span>
+TR = max(
+    high − low,
+    |high − close_prev|,
+    |low  − close_prev|
+)
+
+<span class="c"># Average True Range</span>
+ATR(<span class="m">14</span>) = rolling_mean(TR, window=<span class="m">14</span>)
+
+<span class="c"># Stop-Loss levels</span>
+Long  position:  stop_loss = close − (ATR × <span class="m">2.0</span>)
+Short position:  stop_loss = close + (ATR × <span class="m">2.0</span>)
+Flat:            stop_loss = NaN</pre>
+
+  <div class="callout yellow">
+    <strong>NaN warm-up handling:</strong> ATR requires 14 bars before producing a valid value.
+    Early <code>NaN</code> rows are patched with <code>ffill().bfill()</code> so position sizing
+    never receives NaN inputs.
+  </div>
+
+  <h3>Risk Percent (<code>risk_pct</code>)</h3>
+
+  <pre>risk_pct = |price − stop_loss| / price × <span class="m">100</span></pre>
+
+  <ul style="padding-left:20px; margin-bottom:12px; font-size:13.5px;">
+    <li>Only meaningful on <strong>Enter</strong> signals (sizing into a new position)</li>
+    <li><code>NaN</code> on Exit signals (position closed, no forward risk)</li>
+    <li>Represents: "if the stop-loss is hit immediately, what % of position value is lost"</li>
+  </ul>
+
+  <h4>Verification (2026-03-06)</h4>
+  <pre>CED.MI: price=1.860, stop=1.7957 → |1.860 − 1.7957| / 1.860 = <span class="n">3.46%</span> ✓
+ENV.MI: price=4.140, stop=3.8571 → |4.140 − 3.8571| / 4.140 = <span class="n">6.83%</span> ✓</pre>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <h2 id="report">7. Trading Report and Dashboard</h2>
+
+  <h3><code>trading_report.txt</code> — two sections</h3>
+
+  <h4>Section 1: Actionable Trades (last 4 trading days)</h4>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Column</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>last_date</code></td><td>Date the action was triggered</td></tr>
+        <tr><td><code>signal</code></td><td>Strategy name (e.g. <code>rtt_5020</code>)</td></tr>
+        <tr><td><code>ticker</code></td><td>Yahoo Finance symbol</td></tr>
+        <tr><td><code>price</code></td><td>Close price on action date</td></tr>
+        <tr><td><code>action</code></td><td><code>ENTER LONG</code>, <code>ENTER SHORT</code>, <code>EXIT LONG</code>, <code>EXIT SHORT</code></td></tr>
+        <tr><td><code>stop_loss</code></td><td>ATR stop-loss level at entry</td></tr>
+        <tr><td><code>risk_pct</code></td><td>% distance from price to stop-loss</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><code>trading_dashboard.xlsx</code> — full flat table</h3>
+  <p><strong>2,650 rows = 10 signals × 265 tickers.</strong> One row per <code>(signal, ticker)</code>.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Column</th><th>Type</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>signal</code></td><td>string</td><td>Signal strategy name</td></tr>
+        <tr><td><code>ticker</code></td><td>string</td><td>Yahoo Finance symbol</td></tr>
+        <tr><td><code>last_date</code></td><td>date</td><td>Date of last available bar</td></tr>
+        <tr><td><code>price</code></td><td>float</td><td>Close price on <code>last_date</code></td></tr>
+        <tr><td><code>position</code></td><td>string</td><td><code>LONG</code>, <code>SHORT</code>, or <code>FLAT</code></td></tr>
+        <tr><td><code>action</code></td><td>string</td><td>What happened on last bar (see below)</td></tr>
+        <tr><td><code>signal_changed</code></td><td>bool</td><td><code>True</code> if signal flipped on <code>last_date</code></td></tr>
+        <tr><td><code>stop_loss</code></td><td>float</td><td>ATR-based stop-loss level</td></tr>
+        <tr><td><code>risk_pct</code></td><td>float</td><td><code>|price − stop_loss| / price × 100</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Action taxonomy</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Action</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><code>ENTER LONG</code></td><td>New long position opened (was flat)</td></tr>
+        <tr><td><code>ENTER SHORT</code></td><td>New short position opened (was flat)</td></tr>
+        <tr><td><code>EXIT LONG</code></td><td>Long closed — now flat</td></tr>
+        <tr><td><code>EXIT SHORT</code></td><td>Short closed — now flat</td></tr>
+        <tr><td><code>FLIP: SHORT → LONG</code></td><td>Reversed directly, no intermediate flat</td></tr>
+        <tr><td><code>FLIP: LONG → SHORT</code></td><td>Reversed directly, no intermediate flat</td></tr>
+        <tr><td><code>HOLD LONG</code></td><td>Existing long, no change</td></tr>
+        <tr><td><code>HOLD SHORT</code></td><td>Existing short, no change</td></tr>
+        <tr><td><code>STAY FLAT</code></td><td>No signal, no position</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <strong>report.txt vs dashboard.xlsx discrepancy:</strong> The text report shows
+    <code>EXIT SHORT</code> + <code>ENTER LONG</code> as two events (from <code>rtt_5020</code>),
+    while the dashboard shows <code>FLIP: SHORT → LONG</code> for the same move under
+    <code>rbo_20</code>/<code>rbo_50</code>. The Turtle signal passes through 0 (flat) between
+    positions; Breakout transitions directly.
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <h2 id="cicd">8. CI/CD Workflows</h2>
+
+  <div class="flow">
+    <pre>Mon–Fri 21:00 UTC
+        │
+        ▼
+┌───────────────────────────────────────┐
+│  download_daily_ohlc.yml              │
+│  Runs: get_daily_ohlc_data.py         │
+│  Committed to git:                    │
+│    data/ohlc/today/...parquet         │
+│    data/ohlc/historical/...parquet    │
+└──────────────┬────────────────────────┘
+               │ on: workflow_run (completed + success)
+               ▼
+┌───────────────────────────────────────┐
+│  analyze_and_report.yml               │
+│  Timeout: 90 min                      │
+│  Runs: analyze_stock.py               │
+│        trading_report.py              │
+│  Committed to git:                    │
+│    trading_dashboard.xlsx             │
+│    trading_report.txt                 │
+│  GitHub artifact (30 days):           │
+│    analysis_results.parquet (~500 MB) │
+└──────────────┬────────────────────────┘
+               │ on: workflow_run (completed + success)
+               ▼
+┌───────────────────────────────────────┐
+│  generate_symbol_notebooks.yml        │
+│  Timeout: 180 min                     │
+│  Downloads parquet artifact           │
+│  Runs: generate_symbol_notebooks.py   │
+│  GitHub artifact (30 days):           │
+│    notebooks/it/*.ipynb               │
+└───────────────────────────────────────┘</pre>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Workflow</th><th>Trigger</th><th>Output in git</th><th>Output as artifact</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>download_daily_ohlc.yml</code></td>
+          <td>Cron Mon–Fri 21:00 UTC</td>
+          <td>today + historical parquet</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><code>analyze_and_report.yml</code></td>
+          <td>After download succeeds</td>
+          <td>dashboard.xlsx, report.txt</td>
+          <td>analysis_results.parquet</td>
+        </tr>
+        <tr>
+          <td><code>generate_symbol_notebooks.yml</code></td>
+          <td>After analysis succeeds</td>
+          <td>—</td>
+          <td>notebooks/it/*.ipynb</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout yellow">
+    All automated git commits include <code>[skip ci]</code> in the message to prevent
+    infinite workflow loops.
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <h2 id="config">9. Configuration Reference</h2>
+
+  <p>All parameters live in <code>config.json</code>. Loaded by <code>pipeline.py:load_config()</code> and <code>build_search_spaces()</code>.</p>
+
+  <h3>regimes.turtle</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Key</th><th>Value</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>fast_window</code></td><td>20</td><td>Trailing stop lookback</td></tr>
+      <tr><td><code>slow_window</code></td><td>50</td><td>Direction signal lookback</td></tr>
+      <tr><td><code>relative</code></td><td>true</td><td>Use relative prices</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>regimes.breakout</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Key</th><th>Value</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>bo_window</code></td><td>150</td><td>Rolling channel lookback</td></tr>
+      <tr><td><code>relative</code></td><td>true</td><td>Use relative prices</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>regimes.ma_crossover</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Key</th><th>Value</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>short_window</code></td><td>50</td><td>Short MA period</td></tr>
+      <tr><td><code>medium_window</code></td><td>100</td><td>Medium MA period</td></tr>
+      <tr><td><code>long_window</code></td><td>150</td><td>Long MA period</td></tr>
+      <tr><td><code>ma_type</code></td><td>["sma","ema"]</td><td>Both SMA and EMA generated</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>stop_loss</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Key</th><th>Value</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>atr_window</code></td><td>14</td><td>ATR rolling window</td></tr>
+      <tr><td><code>atr_multiplier</code></td><td>2.0</td><td>Stop = ATR × this value</td></tr>
+      <tr><td><code>swing_window</code></td><td>50</td><td>Available in algoshort, not currently wired in</td></tr>
+      <tr><td><code>retracement_level</code></td><td>0.618</td><td>Fibonacci retracement level (not currently used)</td></tr>
+      <tr><td><code>min_distance</code></td><td>0.5</td><td>Min stop distance % (not currently used)</td></tr>
+      <tr><td><code>max_distance</code></td><td>4.0</td><td>Max stop distance % (not currently used)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>position_sizing</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Key</th><th>Value</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>starting_capital</code></td><td>100 000</td><td>Portfolio capital (€)</td></tr>
+      <tr><td><code>lot</code></td><td>1</td><td>Minimum lot size</td></tr>
+      <tr><td><code>equal_weight</code></td><td>0.05</td><td>5% of capital per position</td></tr>
+      <tr><td><code>amortized_root</code></td><td>2</td><td>Concave sizing root (√ position sizing)</td></tr>
+    </tbody>
+  </table></div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <h2 id="deps">10. Dependencies</h2>
+
+  <h3>Private package — must be installed manually</h3>
+
+  <pre>pip install algoshort-0.1.1-py3-none-any.whl</pre>
+
+  <div class="callout red">
+    <code>algoshort</code> is <strong>not on PyPI</strong>. Install from the <code>.whl</code>
+    file in the repo root. It provides all core quantitative logic.
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Module</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>YFinanceDataHandler</code></td><td>Bulk Yahoo Finance downloads with caching and chunking</td></tr>
+        <tr><td><code>OHLCProcessor</code></td><td>Relative price normalization vs benchmark</td></tr>
+        <tr><td><code>RegimeBO</code></td><td>Breakout and Turtle Trader signal generation</td></tr>
+        <tr><td><code>TripleMACrossoverRegime</code></td><td>Triple MA crossover signal generation</td></tr>
+        <tr><td><code>RegimeFC</code></td><td>Floor/Ceiling regime detection</td></tr>
+        <tr><td><code>ReturnsCalculator</code></td><td>Cumulative returns per signal</td></tr>
+        <tr><td><code>StopLossCalculator</code></td><td>ATR-based stop-loss computation</td></tr>
+        <tr><td><code>PositionSizing</code></td><td>Equal/constant/concave/convex sizing</td></tr>
+        <tr><td><code>trading_summary</code></td><td>Action detection and report formatting</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Public packages</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Package</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>yfinance</code></td><td>Yahoo Finance data download (used by algoshort)</td></tr>
+        <tr><td><code>pandas</code></td><td>Data manipulation and Parquet I/O</td></tr>
+        <tr><td><code>openpyxl</code></td><td>Excel read/write (ticker list, dashboard, snapshot)</td></tr>
+        <tr><td><code>pyarrow</code></td><td>Parquet serialization engine</td></tr>
+        <tr><td><code>joblib</code></td><td>Parallel processing</td></tr>
+        <tr><td><code>tqdm</code></td><td>Progress bars</td></tr>
+        <tr><td><code>papermill</code></td><td>Parametrized Jupyter notebook execution</td></tr>
+        <tr><td><code>ipykernel</code></td><td>Jupyter kernel for papermill</td></tr>
+        <tr><td><code>matplotlib</code></td><td>Plots inside symbol notebooks</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Full local setup</h3>
+
+  <pre>python -m venv venv
+source venv/bin/activate          <span class="c"># Windows: venv\Scripts\activate</span>
+pip install -r requirements.txt
+pip install yfinance openpyxl pyarrow joblib
+pip install algoshort-0.1.1-py3-none-any.whl</pre>
+
+  <footer>
+    Generated from <code>myfinance2</code> codebase &mdash; 2026-03-08
+  </footer>
+
+</main>
+</body>
+</html>
