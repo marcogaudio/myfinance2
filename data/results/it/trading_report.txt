@@ -2,10 +2,8 @@
 ===============================================================================================
   ACTIONABLE TRADES: 2026-03-04 to 2026-03-09 (Last 4 Days)
 ===============================================================================================
- last_date   signal ticker  price    action  stop_loss  risk_pct
-2026-03-09 rtt_5020 HER.MI  4.024 EXIT LONG   3.797429       NaN
-2026-03-09 rtt_5020 IRE.MI  2.578 EXIT LONG   2.409429       NaN
-2026-03-09 rtt_5020 SAB.MI 13.500 EXIT LONG  12.807143       NaN
+ last_date   signal  ticker  price    action  stop_loss  risk_pct
+2026-03-09 rtt_5020 CALT.MI   9.32 EXIT LONG   8.725714       NaN
 
 ===============================================================================================
   LATEST STATUS FOR ACTIVE SIGNALS (2026-03-09)
