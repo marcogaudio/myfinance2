@@ -36,7 +36,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install papermill ipykernel matplotlib pandas pyarrow
+          pip install papermill ipykernel matplotlib pandas pyarrow joblib
           pip install algoshort-0.1.1-py3-none-any.whl
           # Register the Python kernel so papermill can find it by name.
           python -m ipykernel install --user --name python3
