@@ -1,5 +1,5 @@
 name: Download Daily OHLC Data
-
+# Trigger registration on fork by touching this file.
 on:
   # 21:00 UTC = 22:00 CET (winter) / 23:00 CEST (summer, UTC+2)
   # Runs Mon–Fri only (Borsa Italiana is closed on weekends)
