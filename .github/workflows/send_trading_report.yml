@@ -1,0 +1,45 @@
+name: Send Trading Report Email
+
+on:
+  # Runs automatically after the notebook-generation workflow completes successfully.
+  workflow_run:
+    workflows: ["Generate Symbol Notebooks"]
+    types: [completed]
+  # Manual trigger for ad-hoc testing without waiting for the full daily chain.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+    # Guard: skip if triggered by a failed upstream run (workflow_dispatch always proceeds).
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Read trading report
+        id: report
+        run: |
+          # Use a heredoc-style delimiter so multi-line content is safely captured
+          # in GITHUB_OUTPUT without truncation or injection risk.
+          {
+            echo "body<<EOF"
+            cat data/results/it/trading_report.txt
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Send email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.EMAIL_SMTP_SERVER }}
+          server_port: ${{ secrets.EMAIL_SMTP_PORT }}
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "Trading Report – ${{ github.run_id }}"
+          to: ${{ secrets.EMAIL_TO }}
+          from: GitHub Actions <${{ secrets.EMAIL_USERNAME }}>
+          body: ${{ steps.report.outputs.body }}
