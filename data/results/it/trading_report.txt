@@ -2,17 +2,10 @@
 ===============================================================================================
   ACTIONABLE TRADES: 2026-03-05 to 2026-03-10 (Last 4 Days)
 ===============================================================================================
- last_date   signal  ticker     price      action  stop_loss  risk_pct
-2026-03-10 rtt_5020  BFG.MI  4.400000   EXIT LONG   4.054286       NaN
-2026-03-10 rtt_5020 CALT.MI  9.600000 ENTER SHORT  10.237143  6.636900
-2026-03-10 rtt_5020  CRL.MI 22.200001  EXIT SHORT  22.635715       NaN
-2026-03-10 rtt_5020  DBA.MI  3.590000 ENTER SHORT   3.745714  4.337444
-2026-03-10 rtt_5020  EUK.MI  0.610000 ENTER SHORT   0.669286  9.718971
-2026-03-10 rtt_5020 FILA.MI  9.000000 ENTER SHORT   9.484286  5.380956
-2026-03-10 rtt_5020  FNM.MI  0.475000 ENTER SHORT   0.508571  7.067675
-2026-03-10 rtt_5020  FRE.MI  0.226000  ENTER LONG   0.212857  5.815424
-2026-03-10 rtt_5020  INW.MI  8.230000   EXIT LONG   7.990715       NaN
-2026-03-10 rtt_5020  WBS.MI  1.215000  EXIT SHORT   1.223571       NaN
+ last_date   signal  ticker  price     action  stop_loss  risk_pct
+2026-03-10 rtt_5020 ESAU.MI   3.04  EXIT LONG   2.871428       NaN
+2026-03-10 rtt_5020  SIT.MI   2.78 ENTER LONG   2.434286 12.435771
+2026-03-09 rtt_5020 MASI.MI   4.35  EXIT LONG   4.010000       NaN
 
 ===============================================================================================
   LATEST STATUS FOR ACTIVE SIGNALS (2026-03-10)
