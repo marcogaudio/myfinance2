@@ -1,16 +1,17 @@
 
 ===============================================================================================
-  ACTIONABLE TRADES: 2026-03-20 to 2026-03-25 (Last 4 Days)
+  ACTIONABLE TRADES: 2026-03-20 to 2026-03-26 (Last 4 Days)
 ===============================================================================================
- last_date   signal   ticker     price      action  stop_loss  risk_pct
-2026-03-25 rtt_5020 AEDES.MI  0.085800  EXIT SHORT   0.091429       NaN
-2026-03-25 rtt_5020   BSS.MI  5.600000  EXIT SHORT   5.905000       NaN
-2026-03-25 rtt_5020   CBB.MI  0.870000 ENTER SHORT   0.917714  5.484400
-2026-03-25 rtt_5020  CULT.MI 18.700001  ENTER LONG  18.557144  0.763940
-2026-03-25 rtt_5020  FARM.MI  0.170000  ENTER LONG   0.159071  6.428570
-2026-03-25 rtt_5020   PLC.MI  2.350000  ENTER LONG   2.068571 11.975691
-2026-03-25 rtt_5020   RAD.MI  0.970000  EXIT SHORT   0.995714       NaN
+ last_date   signal  ticker     price      action  stop_loss  risk_pct
+2026-03-26 rtt_5020 CELL.MI  2.240000 ENTER SHORT   2.341429  4.528064
+2026-03-26 rtt_5020  DAN.MI 60.700001  EXIT SHORT  65.142857       NaN
+2026-03-26 rtt_5020 ECNL.MI  1.436000  ENTER LONG   1.288000 10.306403
+2026-03-26 rtt_5020 FARM.MI  0.159500   EXIT LONG   0.159071       NaN
+2026-03-26 rtt_5020 FILA.MI  9.380000  ENTER LONG   8.745715  6.762105
+2026-03-26 rtt_5020  LMG.MI  1.180000  ENTER LONG   1.147143  2.784504
+2026-03-26 rtt_5020 MONC.MI 51.459999 ENTER SHORT  54.765714  6.423854
+2026-03-26 rtt_5020  SOL.MI 49.000000   EXIT LONG  48.764284       NaN
 
 ===============================================================================================
-  LATEST STATUS FOR ACTIVE SIGNALS (2026-03-25)
+  LATEST STATUS FOR ACTIVE SIGNALS (2026-03-26)
 ===============================================================================================
