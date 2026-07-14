@@ -1,14 +1,15 @@
 
 ===============================================================================================
-  ACTIONABLE TRADES: 2026-07-08 to 2026-07-13 (Last 4 Days)
+  ACTIONABLE TRADES: 2026-07-09 to 2026-07-14 (Last 4 Days)
 ===============================================================================================
- last_date   signal  ticker      price      action  stop_loss  risk_pct
-2026-07-13 rtt_5020  GVS.MI   4.520000  EXIT SHORT   4.462858       NaN
-2026-07-13 rtt_5020  MNL.MI   0.642000 ENTER SHORT   0.706571 10.057854
-2026-07-13 rtt_5020 PINF.MI   0.810000  EXIT SHORT   0.854286       NaN
-2026-07-13 rtt_5020  PRY.MI 133.350006 ENTER SHORT 144.921432  8.677485
-2026-07-13 rtt_5020 RETI.MI   1.540000   EXIT LONG   1.468571       NaN
+ last_date   signal   ticker     price      action  stop_loss  risk_pct
+2026-07-14 rtt_5020   BGN.MI 65.099998   EXIT LONG  63.142858       NaN
+2026-07-14 rtt_5020 ESIGM.MI  1.375000  ENTER LONG   1.287143  6.389612
+2026-07-14 rtt_5020 EVISO.MI  9.770000  EXIT SHORT  10.062857       NaN
+2026-07-14 rtt_5020  FILA.MI  8.925000 ENTER SHORT   9.356429  4.833936
+2026-07-14 rtt_5020     G.MI 41.950001   EXIT LONG  41.177144       NaN
+2026-07-13 rtt_5020   COP.MI  8.200000  ENTER LONG   8.014286  2.264808
 
 ===============================================================================================
-  LATEST STATUS FOR ACTIVE SIGNALS (2026-07-13)
+  LATEST STATUS FOR ACTIVE SIGNALS (2026-07-14)
 ===============================================================================================
