@@ -1,15 +1,20 @@
 
 ===============================================================================================
-  ACTIONABLE TRADES: 2026-07-09 to 2026-07-14 (Last 4 Days)
+  ACTIONABLE TRADES: 2026-07-10 to 2026-07-15 (Last 4 Days)
 ===============================================================================================
- last_date   signal   ticker     price      action  stop_loss  risk_pct
-2026-07-14 rtt_5020   BGN.MI 65.099998   EXIT LONG  63.142858       NaN
-2026-07-14 rtt_5020 ESIGM.MI  1.375000  ENTER LONG   1.287143  6.389612
-2026-07-14 rtt_5020 EVISO.MI  9.770000  EXIT SHORT  10.062857       NaN
-2026-07-14 rtt_5020  FILA.MI  8.925000 ENTER SHORT   9.356429  4.833936
-2026-07-14 rtt_5020     G.MI 41.950001   EXIT LONG  41.177144       NaN
-2026-07-13 rtt_5020   COP.MI  8.200000  ENTER LONG   8.014286  2.264808
+ last_date   signal  ticker  price     action  stop_loss  risk_pct
+2026-07-15 rtt_5020  BFF.MI  2.980  EXIT LONG   2.842000       NaN
+2026-07-15 rtt_5020  DBA.MI  4.210 ENTER LONG   3.955714  6.040041
+2026-07-15 rtt_5020  ELN.MI 16.490  EXIT LONG  15.497143       NaN
+2026-07-15 rtt_5020 ESAU.MI  3.480 ENTER LONG   3.234286  7.060758
+2026-07-15 rtt_5020  HER.MI  3.882 EXIT SHORT   3.992571       NaN
+2026-07-15 rtt_5020   IP.MI 35.160 EXIT SHORT  37.097143       NaN
+2026-07-15 rtt_5020   MN.MI  2.140 EXIT SHORT   2.217143       NaN
+2026-07-15 rtt_5020  PRT.MI  7.130 ENTER LONG   6.682857  6.271288
+2026-07-15 rtt_5020  SGC.MI  0.308 ENTER LONG   0.289429  6.029683
+2026-07-15 rtt_5020   UD.MI  2.970 EXIT SHORT   3.172857       NaN
+2026-07-13 rtt_5020  COP.MI  8.200 ENTER LONG   8.014286  2.264808
 
 ===============================================================================================
-  LATEST STATUS FOR ACTIVE SIGNALS (2026-07-14)
+  LATEST STATUS FOR ACTIVE SIGNALS (2026-07-15)
 ===============================================================================================
