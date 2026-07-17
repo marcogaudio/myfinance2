@@ -1,19 +1,24 @@
 
 ===============================================================================================
-  ACTIONABLE TRADES: 2026-07-13 to 2026-07-16 (Last 4 Days)
+  ACTIONABLE TRADES: 2026-07-14 to 2026-07-17 (Last 4 Days)
 ===============================================================================================
- last_date   signal  ticker     price      action  stop_loss  risk_pct
-2026-07-16 rtt_5020  ISP.MI  6.392000  ENTER LONG   6.195571  3.073040
-2026-07-16 rtt_5020 LUVE.MI 58.900002 ENTER SHORT  64.314289  9.192338
-2026-07-16 rtt_5020 MARR.MI  6.930000  EXIT SHORT   7.088572       NaN
-2026-07-16 rtt_5020 MFEB.MI  3.774000  EXIT SHORT   3.871714       NaN
-2026-07-16 rtt_5020  PST.MI 27.709999   EXIT LONG  27.397142       NaN
-2026-07-16 rtt_5020 RETI.MI  1.530000 ENTER SHORT   1.592857  4.108314
-2026-07-16 rtt_5020   SL.MI 38.860001  ENTER LONG  36.825715  5.234910
-2026-07-16 rtt_5020  WBS.MI  1.020000  EXIT SHORT   0.991429       NaN
-2026-07-16 rtt_5020   ZV.MI  7.540000  EXIT SHORT   7.712857       NaN
-2026-07-13 rtt_5020  COP.MI  8.200000  ENTER LONG   8.014286  2.264808
+ last_date   signal   ticker     price     action  stop_loss  risk_pct
+2026-07-17 rtt_5020   A2A.MI  2.348000 EXIT SHORT   2.398571       NaN
+2026-07-17 rtt_5020   ACE.MI 22.160000 EXIT SHORT  22.559999       NaN
+2026-07-17 rtt_5020 AEDES.MI  0.858000 ENTER LONG   0.804429  6.243756
+2026-07-17 rtt_5020   AMP.MI 10.740000 EXIT SHORT  11.498000       NaN
+2026-07-17 rtt_5020   ASC.MI  3.055000 EXIT SHORT   3.171428       NaN
+2026-07-17 rtt_5020  CIRC.MI 13.350000  EXIT LONG  12.385715       NaN
+2026-07-17 rtt_5020   CPR.MI  5.690000 EXIT SHORT   5.913143       NaN
+2026-07-17 rtt_5020   CY4.MI  8.960000  EXIT LONG   8.897143       NaN
+2026-07-17 rtt_5020  ECNL.MI  1.386000 EXIT SHORT   1.456571       NaN
+2026-07-17 rtt_5020   ENI.MI 21.645000 EXIT SHORT  22.033215       NaN
+2026-07-17 rtt_5020   FBK.MI 22.900000 ENTER LONG  21.984286  3.998751
+2026-07-17 rtt_5020   ORS.MI 16.620001 ENTER LONG  15.471430  6.910778
+2026-07-17 rtt_5020   PIA.MI  1.844000 ENTER LONG   1.722143  6.608307
+2026-07-17 rtt_5020   REY.MI 97.800003 EXIT SHORT 102.799999       NaN
+2026-07-17 rtt_5020   SFL.MI  1.789000 EXIT SHORT   1.909429       NaN
 
 ===============================================================================================
-  LATEST STATUS FOR ACTIVE SIGNALS (2026-07-16)
+  LATEST STATUS FOR ACTIVE SIGNALS (2026-07-17)
 ===============================================================================================
