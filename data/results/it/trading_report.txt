@@ -1,23 +1,15 @@
 
 ===============================================================================================
-  ACTIONABLE TRADES: 2026-07-27 to 2026-07-30 (Last 4 Days)
+  ACTIONABLE TRADES: 2026-07-27 to 2026-07-31 (Last 4 Days)
 ===============================================================================================
  last_date   signal  ticker      price      action  stop_loss  risk_pct
-2026-07-30 rtt_5020  A2A.MI   2.265000 ENTER SHORT   2.349143  3.714919
-2026-07-30 rtt_5020  AEF.MI   0.171500  EXIT SHORT   0.168571       NaN
-2026-07-30 rtt_5020  AZM.MI  36.580002  EXIT SHORT  36.607143       NaN
-2026-07-30 rtt_5020  CEM.MI  15.060000  EXIT SHORT  15.470001       NaN
-2026-07-30 rtt_5020  CIR.MI   0.734000   EXIT LONG   0.683286       NaN
-2026-07-30 rtt_5020  CPR.MI   5.984000  ENTER LONG   5.668286  5.275975
-2026-07-30 rtt_5020  DGT.MI   1.865000 ENTER SHORT   1.938571  3.944847
-2026-07-30 rtt_5020 EDNR.MI   1.932000 ENTER SHORT   2.060714  6.662230
-2026-07-30 rtt_5020  ITM.MI  28.100000 ENTER SHORT  29.500000  4.982205
-2026-07-30 rtt_5020  MTS.MI   1.430000  EXIT SHORT   1.535714       NaN
-2026-07-30 rtt_5020  REY.MI 109.199997  ENTER LONG 101.385714  7.155937
-2026-07-30 rtt_5020 SEIF.MI   0.254000   EXIT LONG   0.251429       NaN
-2026-07-30 rtt_5020  SOL.MI  56.900002 ENTER SHORT  60.385715  6.126035
-2026-07-30 rtt_5020  UCG.MI  81.699997   EXIT LONG  75.982855       NaN
+2026-07-31 rtt_5020  BST.MI   1.574000  EXIT SHORT   1.620857       NaN
+2026-07-31 rtt_5020 CALT.MI  10.060000  EXIT SHORT  10.322857       NaN
+2026-07-31 rtt_5020  IGD.MI   4.175000  EXIT SHORT   4.497857       NaN
+2026-07-31 rtt_5020  LLY.DE 994.000000   EXIT LONG 947.085702       NaN
+2026-07-31 rtt_5020  NOV.DE  40.900002   EXIT LONG  41.742860       NaN
+2026-07-31 rtt_5020  PST.MI  26.209999 ENTER SHORT  27.337142  4.300431
 
 ===============================================================================================
-  LATEST STATUS FOR ACTIVE SIGNALS (2026-07-30)
+  LATEST STATUS FOR ACTIVE SIGNALS (2026-07-31)
 ===============================================================================================
